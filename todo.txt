@@ -1,7 +1,33 @@
-third line of text
-first line of text
-second line of text
-hello world
-ball
-apple
-cat
+#mapping 
+
+tomrai > তোমরাই
+
+#mapping
+konotai > কোনোটাই
+boishister > বৈশিষ্ট্যের
+
+#mapping
+
+dhong > ঢং
+
+#mapping 
+
+meme > মিম
+
+konta> কোনটা
+sesher > শেষের
+seshe > শেষে
+
+ses > শেষ
+sese > শেষে
+
+Bolben > বলবেন
+Bolbe > বলবে
+
+apdeter > আপডেটের
+updateer > আপডেটের
+updeter > আপডেটের
+
+bristir > বৃষ্টির
+
+vpn > ভিপিএন
