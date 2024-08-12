@@ -34,22 +34,15 @@ jobs:
             CONTENT=""
           fi
 
-          # Pattern to find existing line
-          PATTERN='**Number of mappings:** [0-9]+<br>**Last updated:** [A-Za-z]+ [0-9]+, [0-9]+ \| [0-9:]+'
+          # Create new line content
+          NEW_LINE="<!----> **Number of mappings:** ${COUNT}<br>**Last updated:** ${CURRENTDATETIME}"
 
-          # Create new content
-          NEW_LINE="**Number of mappings:** ${COUNT}<br>**Last updated:** ${CURRENTDATETIME}"
-
-          if echo "$CONTENT" | grep -E "$PATTERN" > /dev/null; then
-            # Replace the existing line
-            NEW_CONTENT=$(echo "$CONTENT" | sed -E "s/$PATTERN/$NEW_LINE/")
-          else
-            # Append the new line if not found
-            NEW_CONTENT=$(echo "$CONTENT" | sed '$a\'"$NEW_LINE")
-          fi
+          # Remove existing lines starting with <!----> and replace them with the new line
+          UPDATED_CONTENT=$(echo "$CONTENT" | sed -E '/<!----> **Number of mappings:**/d')
+          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed '$a\'"$NEW_LINE")
 
           # Write new content to README.md
-          echo "$NEW_CONTENT" > README.md
+          echo "$FINAL_CONTENT" > README.md
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
