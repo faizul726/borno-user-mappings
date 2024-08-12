@@ -38,11 +38,11 @@ jobs:
           NEW_LINE_COUNT="• **Number of mappings:** ${COUNT}  "
           NEW_LINE_DATE="• **Last updated:** ${CURRENTDATETIME}  "
 
-          # Remove existing lines starting with • and replace them
-          UPDATED_CONTENT=$(echo "$CONTENT" | sed -e '/^• **Number of mappings:**/d' -e '/^• **Last updated:**/d')
+          # Remove existing lines starting with • and add new lines
+          UPDATED_CONTENT=$(echo "$CONTENT" | sed -e '/^•/d')
 
-          # Ensure proper formatting with preserved newlines and append the new lines
-          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | awk '/^<br>$/ {print; print "'"$NEW_LINE_COUNT"'"; next} {print} END {print "'"$NEW_LINE_DATE"'"}')
+          # Ensure proper formatting with preserved newlines
+          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed -e '$a\'"$NEW_LINE_COUNT" -e '$a\'"$NEW_LINE_DATE")
 
           # Write updated content back to README.md
           echo "$FINAL_CONTENT" > README.md
