@@ -1,0 +1,31 @@
+name: Merge and Sort Files
+
+on:
+  workflow_dispatch:
+
+jobs:
+  merge_sort:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Sort todo.txt and merge with main.txt
+      run: |
+        # Sort the content of todo.txt
+        sort todo.txt -o todo.txt
+
+        # Merge main.txt and sorted todo.txt, remove duplicates
+        cat main.txt todo.txt | sort | uniq > merged.txt
+
+        # Replace main.txt with the merged content
+        mv merged.txt main.txt
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.name "GitHub Actions"
+        git config --local user.email "actions@github.com"
+        git add main.txt
+        git commit -m "Sorted todo.txt and merged with main.txt"
+        git push
