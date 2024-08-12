@@ -17,7 +17,7 @@ jobs:
         grep -v '^\s*$' todo.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_todo.txt
         
         # Remove lines containing '#mapping', convert to lowercase, remove blank lines, sort, and deduplicate main.txt
-        # grep -v '^\s*$' main.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_main.txt
+        grep -v '^\s*$' main.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_main.txt
 
         # Merge the sorted files, remove any duplicates
         cat sorted_main.txt sorted_todo.txt | sort | uniq > merged.txt
