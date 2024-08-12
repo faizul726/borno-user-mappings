@@ -1,6 +1,6 @@
 # borno-user-mappings
 > [!NOTE]
-> ****Work in progress!**
+> **Work in progress!**
 
 <br>
 
