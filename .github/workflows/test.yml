@@ -13,9 +13,9 @@ jobs:
 
     - name: Sort todo.txt and merge with main.txt
       run: |
-        # Sort and remove duplicates from todo.txt and main.txt
-        sort todo.txt | uniq > sorted_todo.txt
-        sort main.txt | uniq > sorted_main.txt
+        # Sort and remove duplicates from todo.txt and main.txt, removing blank lines
+        grep -v '^\s*$' todo.txt | sort | uniq > sorted_todo.txt
+        grep -v '^\s*$' main.txt | sort | uniq > sorted_main.txt
 
         # Merge the sorted files, remove any duplicates
         cat sorted_main.txt sorted_todo.txt | sort | uniq > merged.txt
