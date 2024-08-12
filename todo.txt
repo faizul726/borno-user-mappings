@@ -1,33 +1,19 @@
-#mapping 
-
+Bolbe > বলবে
+vpn > ভিপিএন
 tomrai > তোমরাই
 
-#mapping
-konotai > কোনোটাই
-boishister > বৈশিষ্ট্যের
-
-#mapping
-
-dhong > ঢং
-
-#mapping 
-
-meme > মিম
-
-konta> কোনটা
-sesher > শেষের
-seshe > শেষে
-
-ses > শেষ
-sese > শেষে
-
-Bolben > বলবেন
-Bolbe > বলবে
-
-apdeter > আপডেটের
 updateer > আপডেটের
+seshe > শেষে
+dhong > ঢং
+sese > শেষে
+lets see hmm
 updeter > আপডেটের
-
+sesher > শেষের
+konotai > কোনোটাই
+apdeter > আপডেটের
+ses > শেষ
+boishister > বৈশিষ্ট্যের
 bristir > বৃষ্টির
-
-vpn > ভিপিএন
+Bolben > বলবেন
+meme > মিম
+konta> কোনটা
