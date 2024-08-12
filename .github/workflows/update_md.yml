@@ -22,7 +22,7 @@ jobs:
       - name: Get current date and time in Dhaka/Asia
         id: get_datetime
         run: |
-          CURRENTDATETIME=$(TZ='Asia/Dhaka' date '+%B %d, %Y | %I:%M %p')
+          CURRENTDATETIME=$(TZ='Asia/Dhaka' date '+%B %d, %Y %I:%M %p')
           echo "CURRENTDATETIME=${CURRENTDATETIME}" >> $GITHUB_ENV
 
       - name: Update README.md
