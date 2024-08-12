@@ -34,15 +34,15 @@ jobs:
             CONTENT=""
           fi
 
-          # Define the new lines with bullet symbol and two spaces at the end
+          # Define new lines with bullet symbol and two spaces at the end
           NEW_LINE_COUNT="• **Number of mappings:** ${COUNT}  "
           NEW_LINE_DATE="• **Last updated:** ${CURRENTDATETIME}  "
 
-          # Remove all lines starting with • and ensure the newline before
-          UPDATED_CONTENT=$(echo "$CONTENT" | sed -e '/^•/d' -e '/^$/!b' -e '/^$/a\\' -e '/^$/a\'"$NEW_LINE_COUNT")
+          # Remove existing lines starting with • and replace them
+          UPDATED_CONTENT=$(echo "$CONTENT" | sed -e '/^• **Number of mappings:**/d' -e '/^• **Last updated:**/d')
 
-          # Append the new lines
-          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed -e '$a\'"$NEW_LINE_DATE")
+          # Ensure proper formatting with preserved newlines and append the new lines
+          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | awk '/^<br>$/ {print; print "'"$NEW_LINE_COUNT"'"; next} {print} END {print "'"$NEW_LINE_DATE"'"}')
 
           # Write updated content back to README.md
           echo "$FINAL_CONTENT" > README.md
