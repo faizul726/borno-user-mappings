@@ -283,7 +283,7 @@ stortir > স্টোরটির
 suggestion > সাজেশন
 talent > ট্যালেন্ট
 tamrin > তামরীন
-tarai >"তারাই
+tarai > তারাই
 telegram > টেলিগ্রাম
 thakle > থাকলে
 timer > টাইমার 
