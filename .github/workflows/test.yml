@@ -11,24 +11,27 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Sort todo.txt and merge with main.txt
+    - name: Sort todo.txt and merge with mappings.txt
       run: |
         # Remove lines containing '#mapping', convert to lowercase, remove blank lines, sort, and deduplicate todo.txt
         grep -v '^\s*$' todo.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_todo.txt
-        
-        # Remove lines containing '#mapping', convert to lowercase, remove blank lines, sort, and deduplicate main.txt
-        grep -v '^\s*$' main.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_main.txt
+
+        # Remove lines containing '#mapping', convert to lowercase, remove blank lines, sort, and deduplicate mappings.txt
+        grep -v '^\s*$' mappings.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_mappings.txt
 
         # Merge the sorted files, remove any duplicates
-        cat sorted_main.txt sorted_todo.txt | sort | uniq > merged.txt
+        cat sorted_mappings.txt sorted_todo.txt | sort | uniq > merged.txt
 
-        # Replace main.txt with the merged and sorted content
-        mv merged.txt main.txt
+        # Replace mappings.txt with the merged and sorted content
+        mv merged.txt mappings.txt
+
+        # Empty todo.txt
+        > todo.txt
 
     - name: Commit and push changes
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add main.txt
-        git commit -m "Sorted todo.txt, removed lines with #mapping, converted to lowercase, and merged with main.txt"
+        git add mappings.txt todo.txt
+        git commit -m "Sorted todo.txt, removed lines with #mapping, converted to lowercase, merged with mappings.txt, and emptied todo.txt"
         git push
