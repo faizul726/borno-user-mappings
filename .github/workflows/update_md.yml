@@ -39,6 +39,7 @@ jobs:
 
           # Create new content
           NEW_LINE="**Number of mappings:** ${COUNT}<br>**Last updated:** ${CURRENTDATETIME}"
+
           if echo "$CONTENT" | grep -E "$PATTERN" > /dev/null; then
             # Replace the existing line
             NEW_CONTENT=$(echo "$CONTENT" | sed -E "s/$PATTERN/$NEW_LINE/")
