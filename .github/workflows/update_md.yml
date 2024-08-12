@@ -34,14 +34,17 @@ jobs:
             CONTENT=""
           fi
 
-          # Pattern to find or add
-          PATTERN='**Number of mappings: [0-9]+ \(Last updated: [0-9\- :]+\)**'
+          # Pattern to find existing line
+          PATTERN='**Number of mappings:** [0-9]+<br>**Last updated:** [0-9\- :]+'
 
           # Create new content
-          NEW_LINE="**Number of mappings: ${COUNT}**  \n**Last updated: ${CURRENTDATETIME}**"
-          NEW_CONTENT=$(echo "$CONTENT" | sed -E "s/$PATTERN/$NEW_LINE/" || echo "$CONTENT")
-          if [ "$CONTENT" = "$NEW_CONTENT" ]; then
-            NEW_CONTENT=$(echo "$NEW_CONTENT" | sed '$a\'"$NEW_LINE")
+          NEW_LINE="**Number of mappings:** ${COUNT}<br>**Last updated:** ${CURRENTDATETIME}"
+          if echo "$CONTENT" | grep -E "$PATTERN" > /dev/null; then
+            # Replace the existing line
+            NEW_CONTENT=$(echo "$CONTENT" | sed -E "s/$PATTERN/$NEW_LINE/")
+          else
+            # Append the new line if not found
+            NEW_CONTENT=$(echo "$CONTENT" | sed '$a\'"$NEW_LINE")
           fi
 
           # Write new content to README.md
