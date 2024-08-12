@@ -1,0 +1,55 @@
+name: Update README with Mappings Count
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - mappings.txt
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Count lines in mappings.txt
+        id: count_lines
+        run: |
+          COUNT=$(wc -l < mappings.txt)
+          echo "COUNT=${COUNT}" >> $GITHUB_ENV
+
+      - name: Get current date and time
+        id: get_datetime
+        run: |
+          CURRENTDATETIME=$(date '+%Y-%m-%d %H:%M:%S')
+          echo "CURRENTDATETIME=${CURRENTDATETIME}" >> $GITHUB_ENV
+
+      - name: Update README.md
+        run: |
+          # Read the current README.md
+          if [ -f README.md ]; then
+            CONTENT=$(cat README.md)
+          else
+            CONTENT=""
+          fi
+
+          # Pattern to find or add
+          PATTERN='Number of mappings [0-9]+ \(Last updated: [0-9\- :]+\)'
+
+          # Create new content
+          NEW_LINE="Number of mappings ${COUNT} (Last updated: ${CURRENTDATETIME})"
+          NEW_CONTENT=$(echo "$CONTENT" | sed -E "s/$PATTERN/$NEW_LINE/" || echo "$CONTENT")
+          if [ "$CONTENT" = "$NEW_CONTENT" ]; then
+            NEW_CONTENT=$(echo "$NEW_CONTENT" | sed '$a\'"$NEW_LINE")
+          fi
+
+          # Write new content to README.md
+          echo "$NEW_CONTENT" > README.md
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'github-actions'
+          author_email: 'actions@github.com'
+          message: 'Update README with mappings count'
