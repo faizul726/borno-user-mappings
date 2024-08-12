@@ -22,7 +22,7 @@ jobs:
       - name: Get current date and time in Dhaka/Asia
         id: get_datetime
         run: |
-          CURRENTDATETIME=$(TZ='Asia/Dhaka' date '+%Y-%m-%d %H:%M:%S')
+          CURRENTDATETIME=$(TZ='Asia/Dhaka' date '+%B %d, %Y | %H:%M')
           echo "CURRENTDATETIME=${CURRENTDATETIME}" >> $GITHUB_ENV
 
       - name: Update README.md
@@ -35,7 +35,7 @@ jobs:
           fi
 
           # Pattern to find existing line
-          PATTERN='**Number of mappings:** [0-9]+<br>**Last updated:** [0-9\- :]+'
+          PATTERN='**Number of mappings:** [0-9]+<br>**Last updated:** [A-Za-z]+ [0-9]+, [0-9]+ \| [0-9:]+'
 
           # Create new content
           NEW_LINE="**Number of mappings:** ${COUNT}<br>**Last updated:** ${CURRENTDATETIME}"
