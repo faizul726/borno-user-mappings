@@ -1,0 +1,31 @@
+name: Process and Append Lines
+
+on:
+  workflow_dispatch:
+
+jobs:
+  process_and_append:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Insert '>' between words in todo_nosymbol.txt
+      run: |
+        # Insert '>' between each pair of words on every line in todo_nosymbol.txt
+        awk '{print $1 " > " $2}' todo_nosymbol.txt > processed_todo.txt
+
+    - name: Append processed lines to todo.txt
+      run: |
+        # Append lines from processed_todo.txt to todo.txt
+        cat processed_todo.txt >> todo.txt
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add todo.txt
+        git add processed_todo.txt
+        git commit -m "Processed todo_nosymbol.txt and appended lines to todo.txt"
+        git push
