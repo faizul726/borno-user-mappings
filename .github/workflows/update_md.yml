@@ -34,15 +34,15 @@ jobs:
             CONTENT=""
           fi
 
-          # Create new line content with bullet symbol and two spaces at the end
-          NEW_LINE="• **Number of mappings:** ${COUNT}  \n• **Last updated:** ${CURRENTDATETIME}  "
+          # Define the new lines with bullet symbol and two spaces at the end
+          NEW_LINE_COUNT="• **Number of mappings:** ${COUNT}  "
+          NEW_LINE_DATE="• **Last updated:** ${CURRENTDATETIME}  "
 
-          # Remove existing lines starting with • and replace them with the new line
-          # Preserve bullet symbols and ensure formatting
-          UPDATED_CONTENT=$(echo "$CONTENT" | sed -E '/^•/d')
-          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed '$a\'"$NEW_LINE")
+          # Replace specific lines starting with •
+          UPDATED_CONTENT=$(echo "$CONTENT" | sed -E "/^• **Number of mappings:**/c\\$NEW_LINE_COUNT")
+          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed -E "/^• **Last updated:**/c\\$NEW_LINE_DATE")
 
-          # Write new content to README.md
+          # Write updated content back to README.md
           echo "$FINAL_CONTENT" > README.md
 
       - name: Commit and push changes
