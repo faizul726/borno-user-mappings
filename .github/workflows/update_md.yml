@@ -34,11 +34,11 @@ jobs:
             CONTENT=""
           fi
 
-          # Create new line content
-          NEW_LINE="<!----> **Number of mappings:** ${COUNT}<br>**Last updated:** ${CURRENTDATETIME}"
+          # Create new line content with two spaces at the end
+          NEW_LINE="**Number of mappings:** ${COUNT}  \n**Last updated:** ${CURRENTDATETIME}  "
 
-          # Remove existing lines starting with <!----> and replace them with the new line
-          UPDATED_CONTENT=$(echo "$CONTENT" | sed -E '/<!----> **Number of mappings:**/d')
+          # Remove existing lines starting with • and replace them with the new line
+          UPDATED_CONTENT=$(echo "$CONTENT" | sed -E '/^•/d')
           FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed '$a\'"$NEW_LINE")
 
           # Write new content to README.md
