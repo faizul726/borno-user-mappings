@@ -1,7 +1,6 @@
 ball
-cat
+
 first line of text
-first line of textapple
-hello world
+
 second line of text
 third line of text

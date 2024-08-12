@@ -13,19 +13,20 @@ jobs:
 
     - name: Sort todo.txt and merge with main.txt
       run: |
-        # Sort the content of todo.txt
-        sort todo.txt -o todo.txt
+        # Sort and remove duplicates from todo.txt and main.txt
+        sort todo.txt | uniq > sorted_todo.txt
+        sort main.txt | uniq > sorted_main.txt
 
-        # Merge main.txt and sorted todo.txt, remove duplicates
-        cat main.txt todo.txt | sort | uniq > merged.txt
+        # Merge the sorted files, remove any duplicates
+        cat sorted_main.txt sorted_todo.txt | sort | uniq > merged.txt
 
-        # Replace main.txt with the merged content
+        # Replace main.txt with the merged and sorted content
         mv merged.txt main.txt
 
     - name: Commit and push changes
       run: |
-        git config --local user.name "GitHub Actions"
-        git config --local user.email "actions@github.com"
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add main.txt
         git commit -m "Sorted todo.txt and merged with main.txt"
         git push
