@@ -38,9 +38,11 @@ jobs:
           NEW_LINE_COUNT="• **Number of mappings:** ${COUNT}  "
           NEW_LINE_DATE="• **Last updated:** ${CURRENTDATETIME}  "
 
-          # Replace all lines starting with • with the new lines
+          # Remove all lines starting with •
           UPDATED_CONTENT=$(echo "$CONTENT" | sed -E '/^•/d')
-          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed '$a\'"$NEW_LINE_COUNT"$'\n'"$NEW_LINE_DATE")
+
+          # Append new lines at the end
+          FINAL_CONTENT=$(echo "$UPDATED_CONTENT" | sed -e '$a\'"$NEW_LINE_COUNT" -e '$a\'"$NEW_LINE_DATE")
 
           # Write updated content back to README.md
           echo "$FINAL_CONTENT" > README.md
