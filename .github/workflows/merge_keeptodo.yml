@@ -13,14 +13,11 @@ jobs:
 
     - name: Sort todo.txt and merge with mappings.txt
       run: |
-        # Ensure any existing temporary files are removed
-        rm -f sorted_todo.txt sorted_mappings.txt merged.txt
-
         # Remove lines containing '#mapping', convert to lowercase, remove blank lines, sort, and deduplicate todo.txt
-        grep -v '#mapping' todo.txt | grep -v '^\s*$' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_todo.txt
+        grep -v '^\s*$' todo.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_todo.txt
 
         # Remove lines containing '#mapping', convert to lowercase, remove blank lines, sort, and deduplicate mappings.txt
-        grep -v '#mapping' mappings.txt | grep -v '^\s*$' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_mappings.txt
+        grep -v '^\s*$' mappings.txt | grep -v '#mapping' | tr '[:upper:]' '[:lower:]' | sort | uniq > sorted_mappings.txt
 
         # Merge the sorted files, remove any duplicates
         cat sorted_mappings.txt sorted_todo.txt | sort | uniq > merged.txt
@@ -33,5 +30,5 @@ jobs:
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add mappings.txt
-        git commit -m "Sorted todo.txt, removed lines with #mapping, converted to lowercase, and merged with mappings.txt."
+        git commit -m "Sorted todo.txt, removed lines with #mapping, converted to lowercase and merged with mappings.txt."
         git push
