@@ -19,10 +19,10 @@ jobs:
           COUNT=$(wc -l < mappings.txt)
           echo "COUNT=${COUNT}" >> $GITHUB_ENV
 
-      - name: Get current date and time
+      - name: Get current date and time in Dhaka/Asia
         id: get_datetime
         run: |
-          CURRENTDATETIME=$(date '+%Y-%m-%d %H:%M:%S')
+          CURRENTDATETIME=$(TZ='Asia/Dhaka' date '+%Y-%m-%d %H:%M:%S')
           echo "CURRENTDATETIME=${CURRENTDATETIME}" >> $GITHUB_ENV
 
       - name: Update README.md
@@ -35,10 +35,10 @@ jobs:
           fi
 
           # Pattern to find or add
-          PATTERN='Number of mappings [0-9]+ \(Last updated: [0-9\- :]+\)'
+          PATTERN='**Number of mappings: [0-9]+ \(Last updated: [0-9\- :]+\)**'
 
           # Create new content
-          NEW_LINE="Number of mappings ${COUNT} (Last updated: ${CURRENTDATETIME})"
+          NEW_LINE="**Number of mappings: ${COUNT}**  \n**Last updated: ${CURRENTDATETIME}**"
           NEW_CONTENT=$(echo "$CONTENT" | sed -E "s/$PATTERN/$NEW_LINE/" || echo "$CONTENT")
           if [ "$CONTENT" = "$NEW_CONTENT" ]; then
             NEW_CONTENT=$(echo "$NEW_CONTENT" | sed '$a\'"$NEW_LINE")
