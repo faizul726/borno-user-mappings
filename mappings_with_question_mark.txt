@@ -1,0 +1,57 @@
+boarder > বোর্ডের
+chaad > চাঁদ
+honorse > অনার্স
+hotath > হঠাৎ
+id > আইডি
+idte > আইডিতে
+joor > জোর
+maping > ম্যাপিং
+mapinge > ম্যাপিংয়ে
+mapinger > ম্যাপিংয়ের
+mapingye > ম্যাপিংয়ে
+mapingyer > ম্যাপিংয়ের
+mapping > ম্যাপিং
+mappinge > ম্যাপিংয়ে
+mappinger > ম্যাপিংয়ের
+mappingye > ম্যাপিংয়ে
+mappingyer > ম্যাপিংয়ের
+osisarera > অফিসারেরা
+rastr > রাষ্ট্র
+rastro > রাষ্ট্র
+ses > শেষ
+sese > শেষে
+seser > শেষের
+seserta > শেষেরটা
+sesertake > শেষেরটাকে
+sesertar > শেষেরটার
+sesertate > শেষেরটাতে
+seserti > শেষেরটি
+sesertike > শেষেরটিকে
+sesertite > শেষেরটিতে
+seske > শেষকে
+sesta > শেষটা
+sestake > শেষটাকে
+sestar > শেষটার
+sestate > শেষটাতে
+sesti > শেষটি
+sestike > শেষটিকে
+sestite > শেষটিতে
+shes > শেষ
+shese > শেষে
+sheser > শেষের
+sheserta > শেষেরটা
+shesertake > শেষেরটাকে
+shesertar > শেষেরটার
+shesertate > শেষেরটাতে
+sheserti > শেষেরটি
+shesertike > শেষেরটিকে
+shesertite > শেষেরটিতে
+
+
+
+
+
+
+
+
+
