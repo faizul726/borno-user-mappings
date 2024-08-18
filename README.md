@@ -3,5 +3,5 @@
 > **Work in progress!**
 
 ### Details
-• **Number of mappings:** 28  
-• **Last updated:** August 13, 2024 02:17 PM  
+• **Number of mappings:** 37  
+• **Last updated:** August 18, 2024 09:10 AM  
